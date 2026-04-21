@@ -110,6 +110,8 @@ In short: Without Unity Catalog (free version), Databricks does not allow creati
 At this point, due to the limitations, we choose the alternative path: creating a personal Databricks Community Edition account.
 We learned part of Azure, but at this stage we decided to continue directly in Databricks with a personal account, not via Azure.
 For this exercise, we select the dataset provided by Databricks: TPCH.
+
+
 <img width="188" height="263" alt="image" src="https://github.com/user-attachments/assets/588604d5-519d-4e2a-bd85-65be6efe7989" />
 
 It is important to clarify that this catalog does not come with tables already created. The catalog is actually empty until we create the tables ourselves.
@@ -120,6 +122,8 @@ For the exercise, we use the TPCH dataset provided by Databricks, available unde
 
 ## 4.1 Raw Tables (Bronze)
 We create a notebook, define the schema manually, and generate the Delta table orders_raw for sales orders.
+
+
 <img width="789" height="318" alt="image" src="https://github.com/user-attachments/assets/15d8e8b4-d495-49df-8df6-df18e92be9a3" />
 
 The original text is separated by |, has no headers, and no data types, so we must define them manually.
@@ -148,7 +152,10 @@ Using SQL, `orders_cleaned` is created from `orders_raw` applying quality filter
 The same **Bronze → Silver** process is repeated for all other datasets (e.g. `lineitem`).
 
 For example, lineitem.
+
+
 <img width="774" height="636" alt="image" src="https://github.com/user-attachments/assets/eaef1af3-81d8-4ec8-b6af-80aa6909d5a9" />
+
 Here is your silver table (cleaned) 
 
 <img width="886" height="572" alt="image" src="https://github.com/user-attachments/assets/f40e0cf6-61ba-4655-9e59-4b422e793f08" />
@@ -167,6 +174,7 @@ The join condition is:
 * We use an inner join to keep only rows where the order exists in both tables.
 
 <img width="604" height="773" alt="image" src="https://github.com/user-attachments/assets/aab55cc2-16c6-4bd4-ad0c-e984d60e0aac" />
+
 
 5.2 Dimension Tables
 dim_date
@@ -191,9 +199,12 @@ RAW and CLEANED tables are created for both customer and supplier using the same
 ## 6.1 Jobs and Pipelines
 
 A Job is a notebook that runs automatically based on a schedule or trigger. It is used for executing notebooks, refreshing tables, and ETL jobs.
+
 ⚠️ Jobs are not available in Community Edition.
 
 In this project, a notebook is created to count rows and a Job is executed manually to test functionality.
+
+
 <img width="906" height="445" alt="image" src="https://github.com/user-attachments/assets/08b95320-023e-44be-95aa-0712cbf20fd9" />
 
 ## 6.2 Pipelines — Delta Live Tables
@@ -216,6 +227,8 @@ Process: Go to the SQL Editor and execute a query. For example: sales per year b
 <img width="906" height="341" alt="image" src="https://github.com/user-attachments/assets/4af8d345-7211-41c6-8abe-640388e9603e" />
 
 Then we create three more files or queries, making a total of 4 different queries. After that, in all of them we click on "Add to dashboard" and select the previously created dashboard. We have called it Sales dashboard
+
+
 <img width="519" height="391" alt="image" src="https://github.com/user-attachments/assets/b603dc24-9b8b-469f-913f-1b1918f17380" />
 
 In this way we will have everything in one. Then, when we go to the dashboard in the data section, we will be able to see which data feed the visualizations, which in our case are the 4 SQL queries.
@@ -283,6 +296,8 @@ Implemented solution: conversational chat within a Databricks notebook with the 
 This workflow was implemented with the support of Claude and Genie (Databricks AI) to generate the notebook code. After generating all the code, a checkbox is enabled in that same notebook asking us what we want to know.
 
 Here is an example of the result:
+
+
 <img width="813" height="681" alt="image" src="https://github.com/user-attachments/assets/b9e33dbc-b42c-47bd-8720-9d53aad848b0" />
 
 
